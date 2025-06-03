@@ -1,7 +1,7 @@
 md
 # Telegram bot with CubikAI integration
 
-This project allows you to deploy a Telegram bot with your own CubikAI AI model. The bot supports dialog, context processing, and advanced features of your model.
+This project allows you to deploy a Telegram bot with CubikAI AI model. The bot supports dialog, context processing, and advanced features of this model.
 
 ## Technology stack
 - **Python 3.80+**
