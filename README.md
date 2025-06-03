@@ -15,9 +15,10 @@ TELEGRAM_TOKEN=yours:token_bot # get from a botfather
 
 CUBIKAI_MODEL_PATH=/path/CubikAI_v1.1.2
 
-CUBIKAI_DEVICE=cuda #or cpu
+CUBIKAI_DEVICE=cuda (NVIDIA only) #or cpu
 
 ## Quick Start
+Read LICENSE
 
 ### 1. Cloning and configuration
 ```bash
