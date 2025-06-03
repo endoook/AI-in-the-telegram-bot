@@ -18,9 +18,9 @@ CUBIKAI_MODEL_PATH=/path/CubikAI_v1.1.2
 CUBIKAI_DEVICE=cuda (NVIDIA only) #or CPU
 
 ## pips
-'''bash
+```bash
 pip install python-telegram-bot==13.7 requests==2.28.1 python-dotenv==1.0.0 flask==2.0.3 python-docx==0.8.11 PyPDF2==3.0.1
-'''
+```
 
 ## Quick Start
 You can change the local AI model to any one that suits you
@@ -32,3 +32,4 @@ Read LICENSE
 git clone https://github.com/endoook/AI-in-the-telegram-bot.git
 cd cubik-ai-telegram-bot
 cp .env.example .env
+```
