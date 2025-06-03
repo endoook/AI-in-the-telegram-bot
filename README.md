@@ -18,7 +18,9 @@ CUBIKAI_MODEL_PATH=/path/CubikAI_v1.1.2
 CUBIKAI_DEVICE=cuda (NVIDIA only) #or cpu
 
 ## Quick Start
-Read LICENSE
+You can change the local AI model to any one that suits you
+but you will have to change the generation code
+Read LICENSE 
 
 ### 1. Cloning and configuration
 ```bash
