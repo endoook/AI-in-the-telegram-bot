@@ -12,7 +12,7 @@ import logging
 
 USER_AI_STATUS = defaultdict(bool)
 TOKEN = os.environ['TELEGRAM_TOKEN']
-ADMIN_CHAT_ID = 1141630676
+ADMIN_CHAT_ID = 1234567890 # your telegram ID 
 
 REFERRALS = defaultdict(list)
 
@@ -22,18 +22,19 @@ model = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = model.to(device)
 
-CV = "v1.3.3"
+# bot version
+CV = "v1.0"
 
 LIMITS_FILE = "limits.json"
 HISTORY_FILE = "chat_history.json"
 
-MAX_HISTORY_ITEMS = 20
-MAX_DISPLAYED_HISTORY = 10
-MAX_MEMORY_MESSAGES = 50
+MAX_HISTORY_ITEMS = 20 # max remembers the history of dialogues in chat_history.json
+MAX_DISPLAYED_HISTORY = 10 # number of displays from the file (recent)
+MAX_MEMORY_MESSAGES = 50 # AI memory number of messages 
 
 MAX_REQUESTS_PER_MINUTE = 5
 MAX_REQUESTS_PER_WEEK = 75
-WHITELISTED_USERS = {1010101010, 1234567890} #premium
+WHITELISTED_USERS = {1010101010, 1234567890} # premium users
 
 USER_RATE_LIMIT = defaultdict(list)
 USER_WEEKLY_LIMIT = defaultdict(list)
@@ -48,6 +49,7 @@ CUBIK_RULES = f"""[You are Cubik, a multilingual assistant. Your rules:
 4. ...
 ]"""
 
+# generating responses from AI
 def generate_tinycubik_response(user_text: str, user_id: int, context: CallbackContext) -> str:
     document_context = ""
     if USER_DOCUMENTS.get(user_id):
@@ -222,6 +224,7 @@ def stop_ai(update: Update, context: CallbackContext):
         reply_markup=reply_markup
     )
 
+# processing of docx documents 
 def handle_document(update: Update, context: CallbackContext):
     user_id = update.message.from_user.id
 
@@ -323,7 +326,7 @@ def show_history(update: Update, context: CallbackContext):
 
     keyboard = [[InlineKeyboardButton("Clear History", callback_data="clear_history")]]
     update.message.reply_text(
-        "💭 Your last 10 requests:\n\n" + "\n".join(messages),
+        "Your last 10 requests:\n\n" + "\n".join(messages),
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
 
