@@ -12,7 +12,9 @@ This project allows you to deploy a Telegram bot with CubikAI AI model. The bot 
 
 ## env file
 TELEGRAM_TOKEN=yours:token_bot # get from a botfather
+
 CUBIKAI_MODEL_PATH=/path/CubikAI_v1.1.2
+
 CUBIKAI_DEVICE=cuda #or cpu
 
 ## Quick Start
