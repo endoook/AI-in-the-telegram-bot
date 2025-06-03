@@ -19,7 +19,7 @@ CUBIKAI_DEVICE=cuda (NVIDIA only) #or CPU
 
 ## pips
 ```bash
-pip install python-telegram-bot==13.7 requests==2.28.1 python-dotenv==1.0.0 flask==2.0.3 python-docx==0.8.11 PyPDF2==3.0.1
+pip install python-telegram-bot==13.7 requests==2.28.1 python-dotenv==1.0.0 flask==2.0.3 python-docx==0.8.11 PyPDF2==3.0.1 -y
 ```
 
 ## Quick Start
