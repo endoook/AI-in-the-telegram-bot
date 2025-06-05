@@ -1,3 +1,6 @@
+#An example of a bot with a local AI CubikAI
+#An approximate version of the Cubik v1.3.2 bot is provided here.
+
 import os
 import time
 import json
@@ -42,7 +45,8 @@ USER_MESSAGE_HISTORY = defaultdict(lambda: deque(maxlen=MAX_MEMORY_MESSAGES))
 USER_DOCUMENTS = defaultdict(str)
 
 # online rules that will work in every dialog
-CUBIK_RULES = f"""[You are Cubik, a multilingual assistant. Your rules:
+# don't forget to put a bot name
+CUBIK_RULES = f"""[You are Name, a multilingual assistant. Your rules:
 1. Respond in the user's detected language
 2. ...
 3. ...
@@ -50,7 +54,7 @@ CUBIK_RULES = f"""[You are Cubik, a multilingual assistant. Your rules:
 ]"""
 
 # generating responses from AI
-def generate_tinycubik_response(user_text: str, user_id: int, context: CallbackContext) -> str:
+def generate_cubik_response(user_text: str, user_id: int, context: CallbackContext) -> str:
     document_context = ""
     if USER_DOCUMENTS.get(user_id):
         document_context = f"\n\n[USER_DOCUMENT CONTENT]:\n{USER_DOCUMENTS[user_id][:2000]}"
