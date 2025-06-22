@@ -80,7 +80,7 @@ def generate_cubik_response(user_text: str, user_id: int, context: CallbackConte
             input_ids,
             max_new_tokens=512,
             do_sample=True,
-            temperature=0.7,
+            temperature=0.7, # There will be spelling problems with a higher value
             top_p=0.9,
             pad_token_id=tokenizer.eos_token_id
         )
