@@ -92,6 +92,7 @@ def generate_cubik_response(user_text: str, user_id: int, context: CallbackConte
         print(f"Error generating response: {e}")
         return "Technical issues. Please try again later."
 
+#Premium features for viewing
 def show_premium_features(update: Update, context: CallbackContext):
     query = update.callback_query
     query.answer()
@@ -172,9 +173,9 @@ def start(update: Update, context: CallbackContext):
 
         if is_whitelisted(user.id):
                 text = (
-                    f"Main menu\n\nHi {user.first_name}, I'm Cubik, your Premium AI assistant\nI'll help you with anything\n\n"
-                    f"DVD-Gold active\n"
-                    f"Your referrals: {len(REFERRALS[user.id])}")
+                    f"Main menu\n\nHi {user.first_name}, I'm your Premium AI assistant\n\n"
+                    f"Premium active\n"
+                    f"Your referrals: {len(REFERRALS[user.id])}") # If necessary
                 keyboard = [
                  [
                     InlineKeyboardButton("News", url="https://t.me/your_news"),
@@ -189,7 +190,7 @@ def start(update: Update, context: CallbackContext):
                 remaining = MAX_REQUESTS_PER_WEEK - len([t for t in USER_WEEKLY_LIMIT[user.id] 
                                                       if t > datetime.now() - timedelta(weeks=1)])
                 text = (
-                    f"Main Menu\n\nHi {user.first_name}, I'm Cubik, your AI assistant in your little problems\nWhat are we going to talk about?\n\n💿You have \"DVD-Standart\" plan {MAX_REQUESTS_PER_WEEK} requests per week\n"
+                    f"Main Menu\n\nHi {user.first_name}, I'm your AI assistant in your little problems\n\nPremium is not active\n"
                     f"Requests left: {remaining}/{MAX_REQUESTS_PER_WEEK}\n\n"
                     f"Invite friends: /ref")
 
@@ -202,7 +203,7 @@ def start(update: Update, context: CallbackContext):
             InlineKeyboardButton("Invite", callback_data="invite"),
                     ],
                     [
-            InlineKeyboardButton("Buy Gold", callback_data="unlimited"),
+            InlineKeyboardButton("Buy Premium", callback_data="unlimited"),
 
             InlineKeyboardButton("Features", callback_data="show_premium_features")
                     ]
@@ -215,6 +216,7 @@ def start(update: Update, context: CallbackContext):
         elif update.callback_query:
                 update.callback_query.edit_message_text(text, reply_markup=reply_markup)
 
+# This feature is for using the bot in groups
 def stop_ai(update: Update, context: CallbackContext):
     user_id = update.message.from_user.id
     USER_AI_STATUS[user_id] = False
@@ -339,6 +341,7 @@ def button_handler(update: Update, context: CallbackContext):
     query.answer()
     user_id = query.from_user.id
 
+    # Customize it as you like
     if query.data == "unlimited":
         query.edit_message_text(
             f"Gold - 1$\n\nAdvantages of premium:\n" premium price 
@@ -417,11 +420,6 @@ def check_weekly_limit(user_id: int) -> bool:
     USER_WEEKLY_LIMIT[user_id] = [t for t in USER_WEEKLY_LIMIT[user_id] if t > now - timedelta(weeks=1)]
     return len(USER_WEEKLY_LIMIT[user_id]) >= MAX_REQUESTS_PER_WEEK
 
-def rotate_api_key():
-    global current_key_index
-    current_key_index = (current_key_index + 1) % len(GROQ_API_KEYS)
-    print(f"Rotated to API key index: {current_key_index}")
-
 def show_premium_info(update: Update, context: CallbackContext):
     user = update.effective_user
     update.message.reply_text(
@@ -489,7 +487,7 @@ def main():
     dp.add_handler(MessageHandler(Filters.document, handle_document))
     dp.add_handler(CallbackQueryHandler(show_premium_features, pattern="^features$"))
 
-    print("Bot is running!")
+    print("Bot is running!") # Preferably 
     updater.start_polling()
     updater.idle()
 
