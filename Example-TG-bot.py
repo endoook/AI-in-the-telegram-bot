@@ -280,7 +280,7 @@ def handle_message(update: Update, context: CallbackContext):
         return
 
     if is_whitelisted(user_id):
-        response = generate_groq_response(user_text, user_id, context)
+        response = generate_cubik_response(user_text, user_id, context)
         USER_MESSAGE_HISTORY[user_id].append(response)
         update_chat_history(user_id, user_text, response)
         update.message.reply_text(f"{response}")
@@ -299,7 +299,7 @@ def handle_message(update: Update, context: CallbackContext):
         return
 
     USER_WEEKLY_LIMIT[user_id].append(datetime.now())
-    response = generate_groq_response(user_text, user_id, context)
+    response = generate_cubik_response(user_text, user_id, context)
     USER_MESSAGE_HISTORY[user_id].append(response)
     update_chat_history(user_id, user_text, response)
 
